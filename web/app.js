@@ -662,6 +662,7 @@ let PDFViewerApplication = {
       }
     }
 
+    parameters.withCredentials = true;
     let loadingTask = getDocument(parameters);
     this.pdfLoadingTask = loadingTask;
 
@@ -1498,7 +1499,7 @@ if (typeof PDFJSDev === 'undefined' || PDFJSDev.test('GENERIC')) {
       // any blob:-URL. The browser's same-origin policy will block requests to
       // blob:-URLs from other origins, so this is safe.
       if (origin !== viewerOrigin && protocol !== 'blob:') {
-        throw new Error('file origin does not match viewer\'s');
+        console.warn('Start accepting URLs from foreign origin -- CORS headers on the remote server must be properly configured');
       }
     } catch (ex) {
       let message = ex && ex.message;
